@@ -147,7 +147,7 @@ Each menu uses a paired *Expanded* widget for its open state, and all of them br
 
 ## Quick Start
 
-1. **Create a Style Asset** — right-click in the Content Browser → *Miscellaneous → Data Asset* → choose `CUI_StyleAsset`. Add a style to the `StyleLibrary`, tweak its tokens, and set `ActiveTheme`.
+1. **Create a Style Asset** — right-click in the Content Browser → *Miscellaneous → Data Asset* → choose `CUI_StyleAsset`. Add a style to the `StyleLibrary`, tweak its tokens, and set `ActiveTheme`. Additionally, use the premade Style Asset, and create your own theme under the default theme.
 2. **Drop in a widget** — add one of the premade ClickyUI widgets to your UMG hierarchy (or subclass one).
 3. **Theme it** — add a `CUI_StyleServiceComponent` to the widgets you want themed, assign your Style Asset, and pick tokens from the dropdowns.
 4. **Wire up events** — bind to the widget's events exactly as you would a stock Unreal widget:
@@ -163,7 +163,7 @@ In Blueprint, the same events appear in the details panel and event graph under 
 
 ## Design Philosophy
 
-ClickyUI intentionally keeps function names and binding patterns identical to Unreal's native widgets. There's nothing new to learn: if you know how to use a `UButton`, you already know how to use a `CUI_Button`. The plugin adds polish, theming, and convenience — not friction.
+ClickyUI intentionally keeps function names and binding patterns identical to Unreal's native widgets. There's nothing new to learn: if you know how to use a `UButton`, you already know how to use a `CUI_Button`. The plugin adds polish, theming, and convenience.
 
 ---
 
