@@ -2,7 +2,7 @@
 
 **A modular, modernized, fully customizable UI plugin for Unreal Engine 5.**
 
-ClickyUI gives you a library of plug-and-play UI widgets — buttons, menus, toasts, progress bars, and text fields — backed by a project-wide theming system. Drop in the premade assets, point them at a Style Asset, and ship a polished, consistent interface without writing styling boilerplate.
+ClickyUI gives you a library of plug-and-play UI widgets — buttons, menus, text fields, and more — backed by a project-wide theming system. Drop in the premade assets, point them at a Style Asset, and ship a polished, consistent interface without writing styling boilerplate.
 
 It stays out of your way. Function names and event bindings mirror the standard Unreal widgets, so everything remains Blueprint-friendly and instantly familiar. Want to react to a button press? `Button->OnClicked` — exactly like a stock UE `UButton`.
 
@@ -16,6 +16,24 @@ It stays out of your way. Function names and event bindings mirror the standard 
 - **Premade content** — the plugin ships with ready-to-use widget assets so you can start immediately.
 - **Blueprint-first** — events, getters, and setters are all exposed and named to match Unreal's conventions.
 - **No vendor lock-in** — built on standard UMG/Slate. Familiar patterns, no surprises.
+
+---
+
+## Project Status
+
+ClickyUI is actively developed. Most of the library is stable and ready to use, but a few components are still being built out:
+
+| Component | Status |
+|-----------|--------|
+| `CUI_StyleAsset` / `CUI_StyleServiceComponent` | ✅ Stable |
+| `CUI_Button_Wide`, `CUI_Button_Square` | ✅ Stable |
+| `CUI_Menu_Dropdown`, `CUI_Menu_Hamburger`, `CUI_Menu_Kebab` | ✅ Stable |
+| `CUI_EditableTextBox` | ✅ Stable |
+| `CUI_Button_Checkbox`, `CUI_Button_CircleTick`, `CUI_Button_Switchbox` | 🚧 Work in progress |
+| `CUI_Toast`, `CUI_Toast_Container` | 🚧 Work in progress |
+| `CUI_ProgressBar` | 🚧 Work in progress |
+
+Work-in-progress components are functional but their interfaces may change between versions — use them with that in mind.
 
 ---
 
@@ -84,11 +102,15 @@ Token fields populate as dropdowns sourced directly from the assigned Style Asse
 |--------|-------------|------------|
 | `CUI_Button_Wide` | A wide text button. Can act as its own text block via optional bindings, with enable/disable and transition animations. | `OnClicked`, `OnPressed`, `OnReleased`, `OnHovered`, `OnUnhovered`, `OnIsEnabled` |
 | `CUI_Button_Square` | An icon button driven by a `UTexture2D`. Supports hover-pulse, click, and selected/deselected animations. | `OnClicked`, `OnClickedPostAnim`, `OnPressed`, `OnReleased`, `OnHovered`, `OnUnhovered` |
-| `CUI_Button_Checkbox` | A checkbox-style toggle with a configurable default state. | `OnCheckStateChanged` |
-| `CUI_Button_CircleTick` | A circular tick toggle — same interface as the checkbox, different look. | `OnCheckStateChanged` |
-| `CUI_Button_Switchbox` | An animated on/off switch with turn-on / turn-off animations. | `OnToggled` |
+| `CUI_Button_Checkbox` 🚧 | A checkbox-style toggle with a configurable default state. | `OnCheckStateChanged` |
+| `CUI_Button_CircleTick` 🚧 | A circular tick toggle — same interface as the checkbox, different look. | `OnCheckStateChanged` |
+| `CUI_Button_Switchbox` 🚧 | An animated on/off switch with turn-on / turn-off animations. | `OnToggled` |
 
 `CUI_Button_Square` exposes both `OnClicked` (immediate) and `OnClickedPostAnim`, which fires after the click animation finishes — handy for chaining state changes to the visual feedback.
+
+**Buttons double as text blocks.** Where a button includes an internal text block — like `CUI_Button_Wide` — you can drive its label directly with the text functions. `SetText(FText)` and `GetText()` work just like they would on a standalone text widget, so you can treat the button as a text element when you need to. Set the initial label and size in the editor via the `TextContent` and `TextSize` properties. (The text bindings are optional, so a button configured without one still works as a plain button.)
+
+> 🚧 **Work in progress** — `CUI_Button_Checkbox`, `CUI_Button_CircleTick`, and `CUI_Button_Switchbox` are still under active development. Their interfaces may change, and they aren't yet recommended for production use. `CUI_Button_Wide` and `CUI_Button_Square` are stable.
 
 ### Menus
 
@@ -100,12 +122,16 @@ Token fields populate as dropdowns sourced directly from the assigned Style Asse
 
 Each menu uses a paired *Expanded* widget for its open state, and all of them broadcast a strongly-typed selection-changed event you can bind to in Blueprint or override in C++.
 
-### Notifications
+### Notifications 🚧
+
+> 🚧 **Work in progress** — the notification toast system is still under active development and not yet recommended for production use.
 
 - **`CUI_Toast`** — a single toast notification with a typed category (`Info`, `Success`, `Warning`, `Error`, `Generic`), a configurable display duration, and show/dismiss animations. Auto-dismisses on a timer, or call `Dismiss()` to close it early.
 - **`CUI_Toast_Container`** — manages a stack of toasts. Call `ShowToast(Message, Type, Duration)` to spawn one. Honors a `MaxToasts` limit and evicts the oldest toast when the stack is full.
 
-### Progress
+### Progress 🚧
+
+> 🚧 **Work in progress** — the progress bar is still under active development and not yet recommended for production use.
 
 - **`CUI_ProgressBar`** — supports two modes:
   - **Determinate** — set a precise value with `SetPercent` (clamped 0–1).
